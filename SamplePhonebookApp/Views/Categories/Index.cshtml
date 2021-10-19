@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SamplePhonebookApp.Models.DTOs.CategoryDto>
+@{
+    ViewBag.Title = "Все Категорий";
+}
+<a asp-action="Create">Добавить Категория</a>
+<table class="table">
+    <tr>
+        <td>Код</td>
+        <td>Имя</td>        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>           
+            <td>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

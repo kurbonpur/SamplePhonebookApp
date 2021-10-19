@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+@if (User.IsInRole("admin"))
+{
+    Layout = "_Managment";
+    Context.Response.Redirect("/Actions");
+}
+else if (User.Identity.IsAuthenticated)
+{ 
+    Context.Response.Redirect("/Actions");
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login">Вход</a>
+    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+}
